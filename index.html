@@ -1,0 +1,77 @@
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Furlab - AI Pet Wellness</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400&family=Poppins:wght@500;600;700&display=swap" rel="stylesheet">
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            fontFamily: {
+              sans: ['Inter', 'sans-serif'],
+              poppins: ['Poppins', 'sans-serif'],
+            },
+            colors: {
+              brand: {
+                indigo: '#4547AC',
+                gold: '#FBC052',
+                'dark-surface': '#22233B',
+              },
+              neutral: {
+                background: '#FDFCF9',
+                'section-bg': '#F5F4F0',
+                divider: '#E0DED7',
+                text: '#2D2D2D',
+                'text-muted': '#5E5E5E',
+              },
+              accent: {
+                mint: '#B3E5C0',
+                sky: '#C6D8FF',
+                coral: '#FF8A65',
+                'nectar-mint': '#73D1A3',
+              },
+            },
+            boxShadow: {
+              'sticker-indigo': '6px 6px 0 #B3E5C0',
+              'sticker-gold': '6px 6px 0 #C6D8FF',
+              'sticker-dark': '6px 6px 0 #73D1A3',
+            }
+          }
+        }
+      }
+    </script>
+    <style>
+      body {
+        font-family: 'Inter', sans-serif;
+        background-color: #FDFCF9;
+        color: #2D2D2D;
+      }
+      h1, h2, h3, h4, h5, h6 {
+        font-family: 'Poppins', sans-serif;
+      }
+    </style>
+  <script type="importmap">
+{
+  "imports": {
+    "react/": "https://aistudiocdn.com/react@^19.2.0/",
+    "react": "https://aistudiocdn.com/react@^19.2.0",
+    "react-dom/": "https://aistudiocdn.com/react-dom@^19.2.0/",
+    "react-router-dom": "https://aistudiocdn.com/react-router-dom@^7.9.4"
+  }
+}
+</script>
+<link rel="stylesheet" href="/index.css">
+</head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/index.tsx"></script>
+  </body>
+</html>
+

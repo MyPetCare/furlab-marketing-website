@@ -21,15 +21,20 @@ furlab-marketing-website/
 ├── components/             # React 组件
 │   ├── Carousel.tsx
 │   ├── CTAButton.tsx
+│   ├── Editor.tsx         # ✨ 内容编辑器
 │   ├── FaqItem.tsx
 │   ├── Footer.tsx
 │   ├── Header.tsx
 │   ├── Icons.tsx
+│   ├── ImageUploader.tsx  # ✨ 图片上传组件
 │   ├── Layout.tsx
+│   ├── PasswordProtection.tsx  # ✨ 密码认证组件
+│   ├── Preview.tsx        # ✨ 实时预览组件
 │   └── SeoHelper.tsx
 ├── pages/                  # 页面组件
 │   ├── HomePage.tsx
 │   ├── AboutPage.tsx
+│   ├── ContentEditorPage.tsx  # ✨ 编辑器页面
 │   ├── FeaturesPage.tsx
 │   ├── ResourcesPage.tsx
 │   ├── ArticlePage.tsx
@@ -48,6 +53,7 @@ furlab-marketing-website/
 ├── vercel.json            # Vercel 部署配置
 ├── tsconfig.json          # TypeScript 配置
 ├── package.json           # 项目依赖
+├── .env.example           # ✨ 环境变量模板
 └── .gitignore             # Git 忽略文件
 ```
 
@@ -173,7 +179,79 @@ vercel --prod
 
 ## 📝 内容管理
 
-网站内容主要在 `constants/content.ts` 中配置：
+### 可视化内容编辑器 ✨
+
+本项目包含一个功能完整的可视化内容编辑器，让非技术人员也能轻松管理网站内容。
+
+#### 访问编辑器
+
+- **URL**: `https://your-domain.com/#/do-not-tell-others-here-is-an-editor`
+- **本地开发**: `http://localhost:3000/#/do-not-tell-others-here-is-an-editor`
+
+#### 功能特性
+
+✅ **实时预览** - 左侧编辑，右侧即时查看效果  
+✅ **完整 CRUD** - 增删改查所有内容模块  
+✅ **拖拽排序** - 重新排列功能、博客、FAQ 等  
+✅ **图片上传** - 集成 Cloudinary，一键上传图片  
+✅ **导入/导出** - 支持 JSON 和 TypeScript 格式  
+✅ **自动保存提醒** - 未保存时有明显提示  
+✅ **密码保护** - 基于环境变量的安全认证  
+✅ **会话管理** - 24 小时自动过期
+
+#### 支持的内容模块
+
+- **Home 页面**: Hero 区域、功能列表、用户评价、应用截图
+- **Features 页面**: 功能分段展示
+- **Blog 页面**: 博客文章（Markdown 支持）、SEO 元数据
+- **Contact 页面**: FAQ 列表
+
+#### 环境变量配置
+
+编辑器需要以下环境变量（见 `.env.example`）：
+
+```bash
+# 编辑器访问密码
+VITE_ADMIN_PASSWORD=your-secret-password
+
+# Cloudinary 图片上传配置
+VITE_CLOUDINARY_CLOUD_NAME=your-cloud-name
+VITE_CLOUDINARY_UPLOAD_PRESET=your-unsigned-preset
+```
+
+**在 Vercel 中配置：**
+
+1. 进入 Vercel Dashboard → 项目 → Settings → Environment Variables
+2. 添加上述三个变量（Production + Preview + Development）
+3. 重新部署应用
+
+**Cloudinary 设置：**
+
+1. 注册免费账号：https://cloudinary.com/
+2. 获取 Cloud Name（Dashboard 可见）
+3. 创建 Upload Preset：
+   - Settings → Upload → Add upload preset
+   - Mode: **Unsigned**
+   - Folder: `furlab-marketing`（可选）
+   - 启用 Auto-optimize
+
+#### 本地开发配置
+
+1. 复制 `.env.example` 为 `.env.local`：
+   ```bash
+   cp .env.example .env.local
+   ```
+
+2. 编辑 `.env.local`，填入实际的配置值
+
+3. 重启开发服务器：
+   ```bash
+   npm run dev
+   ```
+
+### 手动内容管理
+
+网站内容也可以直接在代码中修改（`constants/content.ts`）：
 
 - **导航和 CTA**: `content.common`
 - **首页内容**: `content.home`

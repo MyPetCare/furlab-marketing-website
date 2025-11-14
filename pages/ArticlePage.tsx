@@ -1,24 +1,16 @@
-
 import React from 'react';
 import { useParams, Link } from 'react-router-dom';
 import { content, siteConfig } from '../constants/content';
 import SeoHelper from '../components/SeoHelper';
 import NotFoundPage from './NotFoundPage';
 
-const SimpleMarkdownRenderer: React.FC<{ content: string }> = ({ content: textContent }) => {
-    const lines = textContent.split('\n');
+const MarkdownRenderer: React.FC<{ content: string }> = ({ content: textContent }) => {
+    const rawMarkup = (window as any).marked.parse(textContent || '');
     return (
-        <div className="prose prose-lg lg:prose-xl max-w-none text-neutral-text-muted">
-            {lines.map((line, index) => {
-                if (line.startsWith('## ')) {
-                    return <h2 key={index} className="text-2xl md:text-3xl font-bold text-neutral-text mt-8 mb-4">{line.substring(3)}</h2>;
-                }
-                if (line.trim() === '') {
-                    return null;
-                }
-                return <p key={index} className="mb-6 leading-relaxed">{line}</p>;
-            })}
-        </div>
+        <div 
+            className="prose prose-lg lg:prose-xl max-w-none text-neutral-text-muted"
+            dangerouslySetInnerHTML={{ __html: rawMarkup }}
+        />
     );
 };
 
@@ -81,7 +73,7 @@ const ArticlePage: React.FC = () => {
                         <img className="w-full rounded-lg" src={post.cover_image} alt={`Cover for ${post.title}`} />
                     </div>
                     <div className="mt-12 mx-auto prose-indigo prose-lg text-gray-500 max-w-prose">
-                         <SimpleMarkdownRenderer content={post.body} />
+                         <MarkdownRenderer content={post.body} />
                     </div>
                 </div>
             </div>

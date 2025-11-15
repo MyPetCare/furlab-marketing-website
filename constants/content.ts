@@ -35,7 +35,7 @@ const RAW_CONTENT = {
           "type": "link"
         }
       ],
-      "image": "https://res.cloudinary.com/dlmtb2xqp/image/upload/v1763131186/furlab-marketing/Home_1_jn77ej.png"
+      "image": "https://res.cloudinary.com/dlmtb2xqp/image/upload/v1763179122/furlab-marketing/Home_1-image-v2_pz9iyj.png"
     },
     "features": [
       {

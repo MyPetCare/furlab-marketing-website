@@ -42,7 +42,7 @@ const HomePage: React.FC = () => {
             <SeoHelper title={pageTitle} description={pageDescription} canonicalPath="/" />
 
             {/* Hero Section */}
-            <section className="bg-neutral-section-bg overflow-hidden">
+            <section className="overflow-hidden" style={{ backgroundColor: '#FFF4E1' }}>
                 <div className="max-w-7xl mx-auto lg:grid lg:grid-cols-2">
                     <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 flex items-center py-16 sm:py-24 lg:py-32">
                         <div className="lg:text-left sm:text-center">
@@ -72,7 +72,7 @@ const HomePage: React.FC = () => {
                     </div>
                     <div className="h-56 w-full sm:h-72 md:h-96 lg:h-full lg:relative">
                         <img
-                            className="w-full h-full object-cover lg:absolute lg:inset-0"
+                            className="w-full h-full object-contain lg:absolute lg:inset-0"
                             src={content.home.hero.image}
                             alt="A happy pet with its owner"
                         />

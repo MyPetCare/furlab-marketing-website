@@ -1,8 +1,9 @@
 import type { AppContent } from '../types';
 import { NutritionIcon, HabitIcon, HealthIcon } from '../components/Icons';
+import FurlabLogo from './furlab_homepage_icon_240x80.svg';
 
 // --- GLOBAL VARIABLES ---
-const LOGO_URL = 'https://picsum.photos/seed/furlablogo/120/40';
+const LOGO_URL = FurlabLogo;
 const APP_STORE_LINK = 'https://apps.apple.com';
 const PLAY_STORE_LINK = 'https://play.google.com';
 const CONTACT_EMAIL = 'hello@furlab.com';
@@ -103,9 +104,6 @@ const RAW_CONTENT = {
         "tags": [
           "pet nutrition",
           "dry matter vs as-fed",
-          "dog food comparison",
-          "cat health",
-          "Furlab app"
         ],
         "author": "Furlab Team",
         "published_at": "2025-10-01",

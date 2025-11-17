@@ -23,12 +23,12 @@ const Header: React.FC = () => {
         <header className="bg-neutral-background/80 backdrop-blur-sm sticky top-0 z-40">
             <nav className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8" aria-label="Top">
                 <div className="w-full py-4 flex items-center justify-between">
-                    <div className="flex items-center">
-                        <Link to="/">
+                    <div className="flex items-center gap-10">
+                        <Link to="/" className="flex items-center -mt-0.5">
                             <span className="sr-only">{siteConfig.brandName}</span>
-                            <img className="h-10 w-auto" src={siteConfig.logoUrl} alt={`${siteConfig.brandName} Logo`} />
+                            <img className="h-12 w-auto" src={siteConfig.logoUrl} alt={`${siteConfig.brandName} Logo`} />
                         </Link>
-                        <div className="hidden ml-10 space-x-8 lg:block">
+                        <div className="hidden space-x-8 lg:flex lg:items-center">
                             {navigation.map((link) => (
                                 <NavLink key={link.name} to={link.href} className={navLinkClasses}>
                                     {link.name}

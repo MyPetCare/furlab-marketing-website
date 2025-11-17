@@ -160,7 +160,7 @@ const AboutPage: React.FC = () => {
                         </p>
 
                         <p className="text-base mb-4">
-                            You can reach us anytime through our Contact form.<br />
+                            You can reach us anytime through our <a href="/#/contact" className="text-brand-indigo font-semibold hover:underline">Contact form</a>.<br />
                             <strong className="text-neutral-text">Your feedback helps us build a tool worthy of the pets we love.</strong>
                         </p>
                     </div>

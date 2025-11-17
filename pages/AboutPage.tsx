@@ -80,88 +80,73 @@ const AboutPage: React.FC = () => {
                             Our Story
                         </h2>
                     </div>
-                    <div className="mt-12 max-w-4xl mx-auto text-neutral-text-muted">
-                        <p className="text-lg mb-6">
+                    <div className="mt-12 max-w-4xl mx-auto text-neutral-text-muted leading-relaxed">
+                        <p className="text-lg mb-8 leading-relaxed">
                             Furlab started with a simple observation:<br />
-                            <strong className="text-neutral-text">caring for a pet shouldn't feel this complicated.</strong>
+                            <strong className="text-neutral-text">Caring for a pet shouldn't feel this complicated.</strong>
                         </p>
 
-                        <p className="text-base mb-4">
-                            As pet parents, we were constantly trying to make the "right" decisions — choosing food, tracking habits, noticing changes — but the information we needed lived in too many places, and none of it spoke the same language.
+                        <p className="text-base mb-8 leading-relaxed">
+                            As pet parents ourselves, we kept facing the same challenge: making the "right" decisions about food, health, and care—but the information we needed was scattered everywhere, and nothing connected the dots.
                         </p>
 
-                        <p className="text-base mb-4">
-                            One of us has a cat who easily overeats and gets sick. A neighbor might give him treats without realizing he'd already eaten. Another time, while the cat had to stay with a friend during a family trip, he suddenly got sick. We rushed home and took him to the hospital, but when the vet asked simple questions — <em>"When did he last eat?" "How often has he vomited?"</em> — the answers weren't clear.
+                        <p className="text-base mb-8 leading-relaxed">
+                            One founder's cat would overeat and get sick. When he had to stay with a friend during a trip, he suddenly fell ill. At the vet, simple questions like <em>"When did he last eat?"</em> had no clear answers.
                         </p>
 
-                        <p className="text-base mb-4">
-                            The other founder's dog had ongoing digestive flare-ups — sudden vomiting, inconsistent appetite, sensitive reactions to certain proteins. Every time symptoms returned, he was back at square one, comparing labels, switching formulas, and realizing how little clarity most pet foods actually provide.
+                        <p className="text-base mb-12 leading-relaxed">
+                            The other founder's dog suffered recurring digestive issues—vomiting, appetite swings, reactions to certain proteins. Every flare-up meant starting over: comparing labels, switching brands, realizing how little clarity pet food companies provide.
                         </p>
 
-                        <p className="text-base mb-8">
-                            Different pets. Same frustration.
-                        </p>
-
-                        <hr className="my-8 border-neutral-divider" />
-
-                        <h3 className="text-2xl font-bold text-neutral-text mb-4 text-center">
+                        <h3 className="text-xl font-bold text-neutral-text mb-8 mt-16">
                             We built Furlab to bring clarity back to pet care.
                         </h3>
 
-                        <p className="text-base mb-4">
-                            We met at work and kept circling the same idea:<br />
-                            <strong className="text-neutral-text">pet data is scattered, but the problems it could solve are universal.</strong>
+                        <p className="text-base mb-8 leading-relaxed">
+                            We met at work and kept circling the same idea: <strong className="text-neutral-text">Pet data is scattered, but the problems it could solve are universal.</strong>
                         </p>
 
-                        <p className="text-base mb-4">
-                            Furlab is our attempt to unify the essentials:
+                        <p className="text-base mb-6 leading-relaxed">
+                            Furlab unifies the essentials:
                         </p>
 
-                        <ul className="list-disc list-inside mb-8 space-y-2 text-base">
-                            <li>nutrition that's simple to understand</li>
-                            <li>daily health patterns in one place</li>
-                            <li>insights that adapt to each pet</li>
-                            <li>signals when routines or well-being shift</li>
+                        <ul className="list-disc list-inside mb-12 space-y-3 text-base leading-relaxed">
+                            <li>Nutrition insights that actually make sense</li>
+                            <li>Daily health patterns in one place</li>
+                            <li>Smart reminders that adapt to your pet</li>
+                            <li>Signals when routines or well-being shift</li>
                         </ul>
 
-                        <p className="text-base mb-8">
-                            Not more noise — just the right information, beautifully organized.
+                        <p className="text-base mb-12 leading-relaxed">
+                            Not more noise—just the right information, beautifully organized, exactly when you need it.
                         </p>
 
-                        <hr className="my-8 border-neutral-divider" />
-
-                        <h3 className="text-2xl font-bold text-neutral-text mb-4 text-center">
+                        <h3 className="text-xl font-bold text-neutral-text mb-8 mt-16">
                             Our focus is straightforward:
                         </h3>
 
-                        <p className="text-lg font-semibold text-neutral-text mb-4">
+                        <p className="text-lg font-semibold text-neutral-text mb-8 leading-relaxed">
                             Better data. Better decisions. Better everyday care.
                         </p>
 
-                        <p className="text-base mb-8">
-                            We're not here to replace vets or overwhelm owners with features.<br />
-                            Our job is to make the important things easier to see, track, and act on — so pet parents feel informed, not anxious.
+                        <p className="text-base mb-12 leading-relaxed">
+                            We're not here to replace vets or overwhelm you with features. Our job is to make the important things easier to see, track, and act on—so pet parents feel informed, not anxious.
                         </p>
 
-                        <hr className="my-8 border-neutral-divider" />
-
-                        <h3 className="text-2xl font-bold text-neutral-text mb-4 text-center">
-                            And we're still early in our journey.
+                        <h3 className="text-xl font-bold text-neutral-text mb-8 mt-16">
+                            We're still early in our journey.
                         </h3>
 
-                        <p className="text-base mb-4">
-                            We're building deliberately.<br />
-                            Integrations with smart devices, deeper analytics, and predictive insights are all in motion — and we're refining them with real pet families, not in isolation.
+                        <p className="text-base mb-8 leading-relaxed">
+                            We're building deliberately—refining smart device integrations, deeper analytics, and predictive insights with real pet families, not in isolation.
                         </p>
 
-                        <p className="text-base mb-4">
-                            We think of Furlab as something we're co-creating with our community.<br />
-                            If you have thoughts, needs, or frustrations, we want to hear them.
+                        <p className="text-base mb-8 leading-relaxed">
+                            Furlab is something we're co-creating with our community. If you have thoughts, needs, or frustrations, we want to hear them.
                         </p>
 
-                        <p className="text-base mb-4">
-                            You can reach us anytime through our <a href="/#/contact" className="text-brand-indigo font-semibold hover:underline">Contact form</a>.<br />
-                            <strong className="text-neutral-text">Your feedback helps us build a tool worthy of the pets we love.</strong>
+                        <p className="text-base mb-8 leading-relaxed">
+                            Reach us anytime through our <a href="/#/contact" className="text-brand-indigo font-semibold hover:underline">Contact form</a>. <strong className="text-neutral-text">Your feedback helps us build a tool worthy of the pets we love.</strong>
                         </p>
                     </div>
                 </div>

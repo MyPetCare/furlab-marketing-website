@@ -1,6 +1,6 @@
 import type { AppContent } from '../types';
 import { NutritionIcon, HabitIcon, HealthIcon } from '../components/Icons';
-import FurlabLogo from './furlab_homepage_icon_240x80.svg';
+import FurlabLogo from '../public/icons/furlab_homepage_icon_240x80.svg';
 
 // --- GLOBAL VARIABLES ---
 const LOGO_URL = FurlabLogo;

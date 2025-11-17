@@ -45,7 +45,7 @@ const DownloadPage: React.FC = () => {
                             >
                                 <GooglePlayStoreIcon className="h-10 w-10 mr-3" />
                                 <span className="text-left">
-                                    <span className="block text-xs">GET IT ON</span>
+                                    <span className="block text-xs">Join the wishlist for</span>
                                     <span className="block text-xl font-semibold">Google Play</span>
                                 </span>
                             </a>

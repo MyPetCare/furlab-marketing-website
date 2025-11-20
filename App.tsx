@@ -11,6 +11,8 @@ import PrivacyPage from './pages/PrivacyPage';
 import TermsPage from './pages/TermsPage';
 import NotFoundPage from './pages/NotFoundPage';
 import DownloadPage from './pages/DownloadPage';
+import WaitlistPage from './pages/WaitlistPage';
+import WaitlistVerifyPage from './pages/WaitlistVerifyPage';
 import ContentEditorPage from './pages/ContentEditorPage';
 
 const App: React.FC = () => {
@@ -28,6 +30,8 @@ const App: React.FC = () => {
         <Route path="/resources/:slug" element={<Layout><ArticlePage /></Layout>} />
         <Route path="/contact" element={<Layout><ContactPage /></Layout>} />
         <Route path="/download" element={<Layout><DownloadPage /></Layout>} />
+        <Route path="/waitlist" element={<Layout><WaitlistPage /></Layout>} />
+        <Route path="/waitlist/verify" element={<Layout><WaitlistVerifyPage /></Layout>} />
         <Route path="/privacy" element={<Layout><PrivacyPage /></Layout>} />
         <Route path="/terms" element={<Layout><TermsPage /></Layout>} />
         <Route path="*" element={<Layout><NotFoundPage /></Layout>} />

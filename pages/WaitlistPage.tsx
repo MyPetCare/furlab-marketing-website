@@ -180,16 +180,11 @@ const WaitlistPage: React.FC = () => {
           {submitStatus === 'success' ? (
             <div className="bg-accent-mint/20 border-2 border-accent-mint rounded-lg p-8 text-center">
               <h2 className="text-2xl font-bold text-neutral-text mb-4">
-                🎉 You're on the list!
+                🎉 You're almost there!
               </h2>
               <p className="text-lg text-neutral-text-muted">
                 Please check your email inbox to confirm your spot.
               </p>
-              {cooldownRemaining > 0 && (
-                <p className="mt-4 text-sm text-neutral-text-muted">
-                  You can submit again in {cooldownRemaining} minutes.
-                </p>
-              )}
             </div>
           ) : (
             <div className="bg-neutral-section-bg rounded-2xl shadow-lg p-8">

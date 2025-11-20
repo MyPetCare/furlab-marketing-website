@@ -95,6 +95,11 @@ const WaitlistPage: React.FC = () => {
       return;
     }
 
+    if (formData.pet_types.length === 0) {
+      setErrorMessage('Please select at least one pet type.');
+      return;
+    }
+
     if (!formData.platform) {
       setErrorMessage('Please select a platform.');
       return;
@@ -215,7 +220,6 @@ const WaitlistPage: React.FC = () => {
                     ].map((type) => (
                       <label key={type.value} className="flex items-center cursor-pointer">
                         <input
-                          required
                           type="checkbox"
                           checked={formData.pet_types.includes(type.value)}
                           onChange={() => handlePetTypeChange(type.value)}

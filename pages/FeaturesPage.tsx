@@ -76,8 +76,8 @@ const FeaturesPage: React.FC = () => {
                         <span className="block">Ready to take control?</span>
                         <span className="block text-brand-indigo">Start your pet's wellness journey today.</span>
                     </h2>
-                    <CTAButton as="link" to="/download" variant="primary" className="mt-8">
-                        {content.common.features_cta_label}
+                    <CTAButton as="link" to="/waitlist" variant="primary" className="mt-8">
+                        Join Waitlist
                     </CTAButton>
                 </div>
             </div>

@@ -23,8 +23,8 @@ const RAW_CONTENT = {
       "subhead": "Track nutrition, habits, and health reminders—without the guesswork. Our AI pet wellness app gives you clarity and confidence.",
       "ctas": [
         {
-          "label": "Get Furlab",
-          "url": "/download",
+          "label": "Join Waitlist",
+          "url": "/waitlist",
           "variant": "primary",
           "type": "link"
         },

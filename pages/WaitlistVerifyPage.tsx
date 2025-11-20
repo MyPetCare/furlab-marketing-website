@@ -8,6 +8,45 @@ import { siteConfig } from '../constants/content';
 const VERIFY_API = 'https://furlab.app.n8n.cloud/webhook/verify-email';
 const BETA_API = 'https://furlab.app.n8n.cloud/webhook/submit-beta-tester-details';
 
+// iPhone models list (iPhone 8 and later)
+const IPHONE_MODELS = [
+  'iPhone 8',
+  'iPhone 8 Plus',
+  'iPhone X',
+  'iPhone XR',
+  'iPhone XS',
+  'iPhone XS Max',
+  'iPhone 11',
+  'iPhone 11 Pro',
+  'iPhone 11 Pro Max',
+  'iPhone SE (2nd generation)',
+  'iPhone 12 mini',
+  'iPhone 12',
+  'iPhone 12 Pro',
+  'iPhone 12 Pro Max',
+  'iPhone 13 mini',
+  'iPhone 13',
+  'iPhone 13 Pro',
+  'iPhone 13 Pro Max',
+  'iPhone SE (3rd generation)',
+  'iPhone 14',
+  'iPhone 14 Plus',
+  'iPhone 14 Pro',
+  'iPhone 14 Pro Max',
+  'iPhone 15',
+  'iPhone 15 Plus',
+  'iPhone 15 Pro',
+  'iPhone 15 Pro Max',
+  'iPhone 16',
+  'iPhone 16 Plus',
+  'iPhone 16 Pro',
+  'iPhone 16 Pro Max',
+  'iPhone 17',
+  'iPhone 17 Air',
+  'iPhone 17 Pro',
+  'iPhone 17 Pro Max',
+];
+
 interface VerifyState {
   status: 'loading' | 'verified' | 'error' | 'beta-submitted';
   email?: string;
@@ -20,7 +59,7 @@ const WaitlistVerifyPage: React.FC = () => {
   const [state, setState] = useState<VerifyState>({ status: 'loading' });
   
   const [betaForm, setBetaForm] = useState({
-    feedback_methods: [] as string[],
+    feedback_method: '',
     feedback_frequency: '',
     iphone_model: '',
     ios_version: ''
@@ -78,22 +117,14 @@ const WaitlistVerifyPage: React.FC = () => {
     verifyEmail();
   }, [location.search]);
   
-  const handleFeedbackMethodChange = (method: string) => {
-    setBetaForm(prev => ({
-      ...prev,
-      feedback_methods: prev.feedback_methods.includes(method)
-        ? prev.feedback_methods.filter(m => m !== method)
-        : [...prev.feedback_methods, method]
-    }));
-  };
   
   const handleBetaSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setBetaFormError('');
     
     // Validation
-    if (betaForm.feedback_methods.length === 0) {
-      setBetaFormError('Please select at least one feedback method.');
+    if (!betaForm.feedback_method) {
+      setBetaFormError('Please select a feedback method.');
       return;
     }
     
@@ -102,8 +133,8 @@ const WaitlistVerifyPage: React.FC = () => {
       return;
     }
     
-    if (!betaForm.iphone_model.trim()) {
-      setBetaFormError('Please enter your iPhone model.');
+    if (!betaForm.iphone_model) {
+      setBetaFormError('Please select your iPhone model.');
       return;
     }
     
@@ -115,7 +146,7 @@ const WaitlistVerifyPage: React.FC = () => {
     try {
       await axios.post(BETA_API, {
         email: state.email,
-        feedback_methods: betaForm.feedback_methods,
+        feedback_method: betaForm.feedback_method,
         feedback_frequency: betaForm.feedback_frequency,
         iphone_model: betaForm.iphone_model,
         ios_version: betaForm.ios_version
@@ -268,23 +299,25 @@ const WaitlistVerifyPage: React.FC = () => {
               </h2>
               
               <form onSubmit={handleBetaSubmit} className="space-y-6">
-                {/* Feedback Methods */}
+                {/* Feedback Method (Single Choice) */}
                 <div>
                   <label className="block text-sm font-semibold text-neutral-text mb-2">
                     How would you like to submit feedback? *
                   </label>
                   <div className="space-y-2">
                     {[
-                      { label: 'In-app feedback form', value: 'form' },
+                      { label: 'In-app feedback form', value: 'in-app-form' },
                       { label: 'WhatsApp messaging or scheduled call', value: 'whatsapp' },
                       { label: 'Zoom call', value: 'zoom' }
                     ].map((method) => (
                       <label key={method.value} className="flex items-center cursor-pointer">
                         <input
-                          type="checkbox"
-                          checked={betaForm.feedback_methods.includes(method.value)}
-                          onChange={() => handleFeedbackMethodChange(method.value)}
-                          className="w-4 h-4 text-brand-indigo rounded focus:ring-brand-indigo"
+                          type="radio"
+                          name="feedback_method"
+                          value={method.value}
+                          checked={betaForm.feedback_method === method.value}
+                          onChange={(e) => setBetaForm({ ...betaForm, feedback_method: e.target.value })}
+                          className="w-4 h-4 text-brand-indigo focus:ring-brand-indigo"
                         />
                         <span className="ml-2 text-neutral-text">{method.label}</span>
                       </label>
@@ -300,9 +333,15 @@ const WaitlistVerifyPage: React.FC = () => {
                   <select
                     value={betaForm.feedback_frequency}
                     onChange={(e) => setBetaForm({ ...betaForm, feedback_frequency: e.target.value })}
-                    className="w-full px-4 py-3 rounded-lg border-2 border-neutral-divider focus:border-brand-indigo focus:outline-none transition-colors text-neutral-text bg-white"
+                    className="w-full pl-4 pr-12 py-3 rounded-lg border-2 border-neutral-divider focus:border-brand-indigo focus:outline-none transition-colors text-neutral-text bg-white cursor-pointer appearance-none"
+                    style={{
+                      backgroundImage: `url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke='%232D2D2D'%3E%3Cpath stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M19 9l-7 7-7-7'/%3E%3C/svg%3E")`,
+                      backgroundPosition: 'right 0.75rem center',
+                      backgroundRepeat: 'no-repeat',
+                      backgroundSize: '1.5rem 1.5rem'
+                    }}
                   >
-                    <option value="">Select frequency</option>
+                    <option value="" disabled>Please select..</option>
                     <option value="weekly">Quick feedback after each release (weekly to bi-weekly)</option>
                     <option value="occasionally">Occasionally</option>
                     <option value="once">Once</option>
@@ -315,14 +354,24 @@ const WaitlistVerifyPage: React.FC = () => {
                   <label htmlFor="iphone_model" className="block text-sm font-semibold text-neutral-text mb-2">
                     What iPhone model do you have? *
                   </label>
-                  <input
-                    type="text"
+                  <select
                     id="iphone_model"
                     value={betaForm.iphone_model}
                     onChange={(e) => setBetaForm({ ...betaForm, iphone_model: e.target.value })}
-                    className="w-full px-4 py-3 rounded-lg border-2 border-neutral-divider focus:border-brand-indigo focus:outline-none transition-colors text-neutral-text"
-                    placeholder="e.g., iPhone 15 Pro"
-                  />
+                    required
+                    className="w-full pl-4 pr-12 py-3 rounded-lg border-2 border-neutral-divider focus:border-brand-indigo focus:outline-none transition-colors text-neutral-text bg-white cursor-pointer appearance-none"
+                    style={{
+                      backgroundImage: `url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke='%232D2D2D'%3E%3Cpath stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M19 9l-7 7-7-7'/%3E%3C/svg%3E")`,
+                      backgroundPosition: 'right 0.75rem center',
+                      backgroundRepeat: 'no-repeat',
+                      backgroundSize: '1.5rem 1.5rem'
+                    }}
+                  >
+                    <option value="" disabled>Please select..</option>
+                    {IPHONE_MODELS.map((model) => (
+                      <option key={model} value={model}>{model}</option>
+                    ))}
+                  </select>
                 </div>
 
                 {/* iOS Version */}
@@ -330,35 +379,27 @@ const WaitlistVerifyPage: React.FC = () => {
                   <label htmlFor="ios_version" className="block text-sm font-semibold text-neutral-text mb-2">
                     iOS Version *
                   </label>
-                  <p className="text-sm text-neutral-text-muted mb-2">
-                    Settings → General → About → iOS Version
-                  </p>
+                  {/*<p className="text-sm text-neutral-text-muted mb-2">*/}
+                  {/*  Settings → General → About → iOS Version*/}
+                  {/*</p>*/}
                   <select
                     id="ios_version"
                     value={betaForm.ios_version}
                     onChange={(e) => setBetaForm({ ...betaForm, ios_version: e.target.value })}
-                    className="w-full px-4 py-3 rounded-lg border-2 border-neutral-divider focus:border-brand-indigo focus:outline-none transition-colors text-neutral-text bg-white"
+                    required
+                    className="w-full pl-4 pr-12 py-3 rounded-lg border-2 border-neutral-divider focus:border-brand-indigo focus:outline-none transition-colors text-neutral-text bg-white cursor-pointer appearance-none"
+                    style={{
+                      backgroundImage: `url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke='%232D2D2D'%3E%3Cpath stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M19 9l-7 7-7-7'/%3E%3C/svg%3E")`,
+                      backgroundPosition: 'right 0.75rem center',
+                      backgroundRepeat: 'no-repeat',
+                      backgroundSize: '1.5rem 1.5rem'
+                    }}
                   >
-                    <option value="">Select your iOS version</option>
-                    <option value="18.2">iOS 18.2</option>
-                    <option value="18.1">iOS 18.1</option>
-                    <option value="18.0">iOS 18.0</option>
-                    <option value="17.7">iOS 17.7</option>
-                    <option value="17.6">iOS 17.6</option>
-                    <option value="17.5">iOS 17.5</option>
-                    <option value="17.4">iOS 17.4</option>
-                    <option value="17.3">iOS 17.3</option>
-                    <option value="17.2">iOS 17.2</option>
-                    <option value="17.1">iOS 17.1</option>
-                    <option value="17.0">iOS 17.0</option>
-                    <option value="16.7">iOS 16.7</option>
-                    <option value="16.6">iOS 16.6</option>
-                    <option value="16.5">iOS 16.5</option>
-                    <option value="16.4">iOS 16.4</option>
-                    <option value="16.3">iOS 16.3</option>
-                    <option value="16.2">iOS 16.2</option>
-                    <option value="16.1">iOS 16.1</option>
-                    <option value="16.0">iOS 16.0</option>
+                    <option value="" disabled>Please select..</option>
+                    <option value="26.x">iOS 26</option>
+                    <option value="18.x">iOS 18</option>
+                    <option value="17.x">iOS 17</option>
+                    <option value="16.x">iOS 16</option>
                   </select>
                 </div>
 
@@ -380,12 +421,12 @@ const WaitlistVerifyPage: React.FC = () => {
                     Submit Beta Application
                   </CTAButton>
                 </div>
-
-                {/* Footer Note */}
-                <p className="text-sm text-neutral-text-muted text-center">
-                  Your information is safe and will never be shared.<br />
-                  We'll contact you within a week if you're selected.
-                </p>
+                <br/>
+                {/*/!* Footer Note *!/*/}
+                {/*<p className="text-sm text-neutral-text-muted text-center">*/}
+                {/*  Your information is safe and will never be shared.<br />*/}
+                {/*  We'll contact you within a week if you're selected.*/}
+                {/*</p>*/}
               </form>
             </div>
           </div>
@@ -416,10 +457,10 @@ const WaitlistVerifyPage: React.FC = () => {
                 Thanks for Applying! 🎉
               </h1>
               <p className="mt-4 text-lg text-neutral-text-muted">
-                Your beta application has been submitted successfully.
+                Your beta application has been submitted successfully, we'll contact you soon.
               </p>
               <p className="mt-2 text-base text-neutral-text-muted">
-                We'll contact you within a week if you're selected for the beta program.
+                
               </p>
               <div className="mt-8 space-y-3">
                 <div>

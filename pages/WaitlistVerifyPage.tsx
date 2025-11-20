@@ -112,7 +112,7 @@ const WaitlistVerifyPage: React.FC = () => {
           return;
         }
         
-        // Call verification API (Mock for now - will work when n8n is configured)
+        // Call verification API
         try {
           await axios.post(VERIFY_API, {
             email,
@@ -127,17 +127,14 @@ const WaitlistVerifyPage: React.FC = () => {
             email,
             isBeta: is_beta 
           });
-        } catch (apiError) {
-          console.log('API not configured yet, using mock verification');
-          // Mock success for testing
-          
-          // Store token in localStorage to prevent reuse
-          localStorage.setItem(verifiedTokenKey, 'true');
-          
+        } catch (apiError: any) {
+          console.error('Verification API error:', apiError);
+          const errorMessage = apiError.response?.data?.message 
+            || apiError.message 
+            || 'Failed to verify email. Please try again or contact support.';
           setState({ 
-            status: 'verified',
-            email,
-            isBeta: is_beta 
+            status: 'error', 
+            message: errorMessage 
           });
         }
         
@@ -185,10 +182,12 @@ const WaitlistVerifyPage: React.FC = () => {
       });
       
       setState(prev => ({ ...prev, status: 'beta-submitted' }));
-    } catch (error) {
-      console.log('API not configured yet, using mock submission');
-      // Mock success for testing
-      setState(prev => ({ ...prev, status: 'beta-submitted' }));
+    } catch (error: any) {
+      console.error('Beta submission API error:', error);
+      const errorMessage = error.response?.data?.message 
+        || error.message 
+        || 'Failed to submit beta application. Please try again.';
+      setBetaFormError(errorMessage);
     }
   };
 

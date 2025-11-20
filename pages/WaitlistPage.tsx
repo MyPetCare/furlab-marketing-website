@@ -139,10 +139,13 @@ const WaitlistPage: React.FC = () => {
         want_beta_testing: false,
         source: '',
       });
-    } catch (error) {
+    } catch (error: any) {
       console.error('Submission error:', error);
       setSubmitStatus('error');
-      setErrorMessage('Something went wrong. Please try again later.');
+      const errorMessage = error.response?.data?.message 
+        || error.message 
+        || 'Failed to submit form. Please check your connection and try again.';
+      setErrorMessage(errorMessage);
     } finally {
       setIsSubmitting(false);
     }

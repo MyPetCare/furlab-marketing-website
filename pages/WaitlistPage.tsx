@@ -4,7 +4,7 @@ import SeoHelper from '../components/SeoHelper';
 import CTAButton from '../components/CTAButton';
 import { siteConfig } from '../constants/content';
 
-const WEBHOOK_URL = 'https://furlab.app.n8n.cloud/webhook-test/submit-to-wish-list';
+const WEBHOOK_URL = 'https://furlab.app.n8n.cloud/webhook/submit-to-wish-list';
 const SUBMIT_COOLDOWN = 10 * 60 * 1000; // 10 minutes
 
 const sourceOptions = [

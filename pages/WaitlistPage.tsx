@@ -103,10 +103,11 @@ const WaitlistPage: React.FC = () => {
     setIsSubmitting(true);
     setErrorMessage('');
 
-    // Generate token for email verification
+    // Generate token for email verification with timestamp
     const tokenData = {
       is_beta: formData.want_beta_testing,
-      email: formData.email
+      email: formData.email,
+      timestamp: Date.now() // Current timestamp in milliseconds
     };
     const token = btoa(JSON.stringify(tokenData));
 

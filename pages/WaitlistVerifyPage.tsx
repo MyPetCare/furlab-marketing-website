@@ -48,7 +48,7 @@ const IPHONE_MODELS = [
 ];
 
 interface VerifyState {
-  status: 'loading' | 'verified' | 'error' | 'beta-submitted';
+  status: 'loading' | 'verified' | 'error' | 'beta-submitted' | 'expired' | 'already_verified';
   email?: string;
   isBeta?: boolean;
   message?: string;
@@ -77,13 +77,38 @@ const WaitlistVerifyPage: React.FC = () => {
         return;
       }
       
+      // Check if this token has already been verified
+      const verifiedTokenKey = `verified_token_${token}`;
+      const isAlreadyVerified = localStorage.getItem(verifiedTokenKey);
+      
+      if (isAlreadyVerified) {
+        setState({ 
+          status: 'already_verified', 
+          message: 'This verification link has already been used.' 
+        });
+        return;
+      }
+      
       try {
         // Decode token
         const tokenData = JSON.parse(atob(token));
-        const { email, is_beta } = tokenData;
+        const { email, is_beta, timestamp } = tokenData;
         
-        if (!email) {
+        if (!email || !timestamp) {
           setState({ status: 'error', message: 'Invalid token format.' });
+          return;
+        }
+        
+        // Check if token is expired (3 days = 3 * 24 * 60 * 60 * 1000 milliseconds)
+        const threeDaysInMs = 3 * 24 * 60 * 60 * 1000;
+        const currentTime = Date.now();
+        const isExpired = (currentTime - timestamp) > threeDaysInMs;
+        
+        if (isExpired) {
+          setState({ 
+            status: 'expired', 
+            message: 'This verification link has expired. Please sign up again.' 
+          });
           return;
         }
         
@@ -94,6 +119,9 @@ const WaitlistVerifyPage: React.FC = () => {
             is_beta
           });
           
+          // Store token in localStorage to prevent reuse
+          localStorage.setItem(verifiedTokenKey, 'true');
+          
           setState({ 
             status: 'verified',
             email,
@@ -102,6 +130,10 @@ const WaitlistVerifyPage: React.FC = () => {
         } catch (apiError) {
           console.log('API not configured yet, using mock verification');
           // Mock success for testing
+          
+          // Store token in localStorage to prevent reuse
+          localStorage.setItem(verifiedTokenKey, 'true');
+          
           setState({ 
             status: 'verified',
             email,
@@ -180,6 +212,84 @@ const WaitlistVerifyPage: React.FC = () => {
               <p className="mt-4 text-lg text-neutral-text-muted">
                 Please wait a moment
               </p>
+            </div>
+          </div>
+        </section>
+      </>
+    );
+  }
+
+  // Expired State
+  if (state.status === 'expired') {
+    return (
+      <>
+        <SeoHelper
+          title={`Link Expired | ${siteConfig.brandName}`}
+          description="Verification link has expired"
+          canonicalPath="/waitlist/verify"
+        />
+        
+        <section className="py-16 bg-neutral-background sm:py-24">
+          <div className="max-w-2xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div className="text-center">
+              <div className="mx-auto flex items-center justify-center h-16 w-16 rounded-full bg-neutral-text-muted/20 mb-6">
+                <svg className="h-8 w-8 text-neutral-text-muted" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+                </svg>
+              </div>
+              <h1 className="text-3xl font-extrabold text-neutral-text sm:text-4xl">
+                Link Expired ⏰
+              </h1>
+              <p className="mt-4 text-lg text-neutral-text-muted">
+                This verification link has expired after 3 days.
+              </p>
+              <p className="mt-2 text-base text-neutral-text-muted">
+                Don't worry! Just join the waitlist again to get a new verification link.
+              </p>
+              <div className="mt-8">
+                <CTAButton as="link" to="/waitlist" variant="primary">
+                  Join Waitlist Again
+                </CTAButton>
+              </div>
+            </div>
+          </div>
+        </section>
+      </>
+    );
+  }
+
+  // Already Verified State
+  if (state.status === 'already_verified') {
+    return (
+      <>
+        <SeoHelper
+          title={`Already Verified | ${siteConfig.brandName}`}
+          description="This link has already been used"
+          canonicalPath="/waitlist/verify"
+        />
+        
+        <section className="py-16 bg-neutral-background sm:py-24">
+          <div className="max-w-2xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div className="text-center">
+              <div className="mx-auto flex items-center justify-center h-16 w-16 rounded-full bg-brand-indigo/20 mb-6">
+                <svg className="h-8 w-8 text-brand-indigo" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                </svg>
+              </div>
+              <h1 className="text-3xl font-extrabold text-neutral-text sm:text-4xl">
+                Already Verified ✓
+              </h1>
+              <p className="mt-4 text-lg text-neutral-text-muted">
+                This verification link has already been used.
+              </p>
+              <p className="mt-2 text-base text-neutral-text-muted">
+                Your email was verified successfully. You're on the waitlist!
+              </p>
+              <div className="mt-8">
+                <CTAButton as="link" to="/" variant="primary">
+                  Back to Home
+                </CTAButton>
+              </div>
             </div>
           </div>
         </section>

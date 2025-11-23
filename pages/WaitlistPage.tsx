@@ -25,6 +25,7 @@ const sourceOptions = [
 
 const WaitlistPage: React.FC = () => {
   const [formData, setFormData] = useState({
+    name: '',
     email: '',
     pet_types: [] as string[],
     platform: '',
@@ -90,7 +91,19 @@ const WaitlistPage: React.FC = () => {
     }
 
     // Validation
-    if (!formData.email || !formData.email.includes('@')) {
+    if (!formData.name || formData.name.trim() === '') {
+      setErrorMessage('Please enter your name.');
+      return;
+    }
+
+    if (formData.name.length > 20) {
+      setErrorMessage('Name must be 20 characters or less.');
+      return;
+    }
+
+    // Email validation - simple but effective pattern
+    const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!formData.email || !emailPattern.test(formData.email.trim())) {
       setErrorMessage('Please enter a valid email address.');
       return;
     }
@@ -118,6 +131,7 @@ const WaitlistPage: React.FC = () => {
 
     try {
       await axios.post(WEBHOOK_URL, {
+        name: formData.name,
         email: formData.email,
         pet_type: formData.pet_types.length > 0 ? formData.pet_types : null,
         platform: formData.platform,
@@ -133,6 +147,7 @@ const WaitlistPage: React.FC = () => {
 
       // Reset form
       setFormData({
+        name: '',
         email: '',
         pet_types: [],
         platform: '',
@@ -172,8 +187,8 @@ const WaitlistPage: React.FC = () => {
             {/*<p className="mt-4 text-xl text-neutral-text-muted">*/}
             {/*  Join our waitlist and be the first to try new features.*/}
             {/*</p>*/}
-            <p className="mt-2 text-lg text-brand-gold font-semibold">
-              🎁 Limited beta spots available to win 1 year of free Pro membership.
+            <p className="mt-2 text-base text-brand-gold font-semibold">
+              🎁 Limited beta spots available to win 6 months of free Pro membership.
             </p>
           </div>
 
@@ -189,6 +204,23 @@ const WaitlistPage: React.FC = () => {
           ) : (
             <div className="bg-neutral-section-bg rounded-2xl shadow-lg p-8">
               <form onSubmit={handleSubmit} className="space-y-6">
+                {/* Name */}
+                <div>
+                  <label htmlFor="name" className="block text-sm font-semibold text-neutral-text mb-2">
+                    Name *
+                  </label>
+                  <input
+                    type="text"
+                    id="name"
+                    required
+                    maxLength={20}
+                    value={formData.name}
+                    onChange={(e) => setFormData({ ...formData, name: e.target.value })}
+                    className="w-full px-4 py-3 rounded-lg border-2 border-neutral-divider focus:border-brand-indigo focus:outline-none transition-colors text-neutral-text"
+                    placeholder="Your name"
+                  />
+                </div>
+
                 {/* Email */}
                 <div>
                   <label htmlFor="email" className="block text-sm font-semibold text-neutral-text mb-2">

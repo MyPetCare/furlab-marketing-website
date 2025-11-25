@@ -1,5 +1,5 @@
 import React from 'react';
-import { HashRouter, Routes, Route } from 'react-router-dom';
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import Layout from './components/Layout';
 import HomePage from './pages/HomePage';
 import AboutPage from './pages/AboutPage';
@@ -17,7 +17,7 @@ import ContentEditorPage from './pages/ContentEditorPage';
 
 const App: React.FC = () => {
   return (
-    <HashRouter>
+    <BrowserRouter>
       <Routes>
         {/* Editor route without Layout (full-screen) */}
         <Route path="/do-not-tell-others-here-is-an-editor" element={<ContentEditorPage />} />
@@ -36,7 +36,7 @@ const App: React.FC = () => {
         <Route path="/terms" element={<Layout><TermsPage /></Layout>} />
         <Route path="*" element={<Layout><NotFoundPage /></Layout>} />
       </Routes>
-    </HashRouter>
+    </BrowserRouter>
   );
 };
 

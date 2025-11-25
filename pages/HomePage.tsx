@@ -57,11 +57,11 @@ const HomePage: React.FC = () => {
                                 {content.home.hero.ctas.map((cta, index) => (
                                     <div key={cta.label} className={index > 0 ? "mt-3 sm:mt-0 sm:ml-3" : ""}>
                                         {cta.type === 'link' ? (
-                                            <CTAButton as="link" to={cta.url} variant={cta.variant}>
+                                            <CTAButton as="link" to={cta.url} variant={cta.variant} className="min-w-[172px] text-center">
                                                 {cta.label}
                                             </CTAButton>
                                         ) : (
-                                            <CTAButton as="a" href={cta.url} variant={cta.variant}>
+                                            <CTAButton as="a" href={cta.url} variant={cta.variant} className="min-w-[172px] text-center">
                                                 {cta.label}
                                             </CTAButton>
                                         )}

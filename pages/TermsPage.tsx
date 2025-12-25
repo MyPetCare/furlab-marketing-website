@@ -27,7 +27,7 @@ const TermsPage: React.FC = () => {
                     <div className="mt-6 prose prose-indigo prose-lg text-neutral-text-muted mx-auto">
                         <h2>AGREEMENT TO OUR LEGAL TERMS</h2>
                         <p>
-                            We are Muke Intelligent Technology Co., Ltd. ("Company," "we," "us," "our").
+                            We are Shanghai Muke Intelligent Technology Co., Ltd. ("Company," "we," "us," "our").
                         </p>
                         <p>
                             We operate the website furlab.cc and the mobile application "Furlab" available on iOS (and, in the future, other platforms), as well as any other related products and services that refer or link to these legal terms (the "Legal Terms") (collectively, the "Services").
@@ -36,7 +36,7 @@ const TermsPage: React.FC = () => {
                             You can contact us by email at <a href="mailto:contact@furlab.cc">contact@furlab.cc</a>.
                         </p>
                         <p>
-                            These Legal Terms constitute a legally binding agreement made between you, whether personally or on behalf of an entity ("you"), and Muke Intelligent Technology Co., Ltd., concerning your access to and use of the Services. You agree that by accessing the Services, you have read, understood, and agreed to be bound by all of these Legal Terms. <strong>IF YOU DO NOT AGREE WITH ALL OF THESE LEGAL TERMS, THEN YOU ARE EXPRESSLY PROHIBITED FROM USING THE SERVICES AND YOU MUST DISCONTINUE USE IMMEDIATELY.</strong>
+                            These Legal Terms constitute a legally binding agreement made between you, whether personally or on behalf of an entity ("you"), and Shanghai Muke Intelligent Technology Co., Ltd., concerning your access to and use of the Services. You agree that by accessing the Services, you have read, understood, and agreed to be bound by all of these Legal Terms. <strong>IF YOU DO NOT AGREE WITH ALL OF THESE LEGAL TERMS, THEN YOU ARE EXPRESSLY PROHIBITED FROM USING THE SERVICES AND YOU MUST DISCONTINUE USE IMMEDIATELY.</strong>
                         </p>
                         <p>
                             Supplemental terms and conditions or documents that may be posted on the Services from time to time are hereby expressly incorporated herein by reference. We reserve the right, in our sole discretion, to make changes or modifications to these Legal Terms at any time and for any reason. We will alert you about any changes by updating the "Last updated" date of these Legal Terms, and you waive any right to receive specific notice of each such change. It is your responsibility to periodically review these Legal Terms to stay informed of updates. You will be subject to, and will be deemed to have been made aware of and to have accepted, the changes in any revised Legal Terms by your continued use of the Services after the date such revised Legal Terms are posted.

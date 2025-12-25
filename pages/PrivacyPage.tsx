@@ -26,7 +26,7 @@ const PrivacyPage: React.FC = () => {
                     </div>
                     <div className="mt-6 prose prose-indigo prose-lg text-neutral-text-muted mx-auto">
                         <p>
-                            This Privacy Notice for Muke Intelligent Technology Co., Ltd. (doing business as Furlab) ("we," "us," or "our"), describes how and why we might access, collect, store, use, and/or share ("process") your personal information when you use our services ("Services"), including when you:
+                            This Privacy Notice for Shanghai Muke Intelligent Technology Co., Ltd. (doing business as Furlab) ("we," "us," or "our"), describes how and why we might access, collect, store, use, and/or share ("process") your personal information when you use our services ("Services"), including when you:
                         </p>
                         <ul>
                             <li>Visit our website at <a href="https://www.furlab.cc" target="_blank" rel="noopener noreferrer">https://www.furlab.cc</a> or any website of ours that links to this Privacy Notice</li>
@@ -477,7 +477,7 @@ const PrivacyPage: React.FC = () => {
                             If you have questions or comments about this notice, you may email us at <a href="mailto:contact@furlab.cc">contact@furlab.cc</a> or contact us by post at:
                         </p>
                         <p>
-                            Muke Intelligent Technology Co., Ltd.<br />
+                            Shanghai Muke Intelligent Technology Co., Ltd.<br />
                             Floor 2<br />
                             No. 25 Yixian Road<br />
                             Shanghai, Shanghai 200081<br />

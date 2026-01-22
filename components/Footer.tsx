@@ -2,14 +2,14 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { siteConfig } from '../constants/content';
-import { FacebookIcon, InstagramIcon, TwitterIcon } from './Icons';
+import { FacebookIcon, InstagramIcon, TikTokIcon } from './Icons';
 import type { SocialLink } from '../types';
 
 
 const socialLinks: SocialLink[] = [
-    { name: 'Facebook', url: '#', icon: FacebookIcon },
-    { name: 'Instagram', url: '#', icon: InstagramIcon },
-    { name: 'Twitter', url: '#', icon: TwitterIcon },
+    { name: 'Facebook', url: 'https://www.facebook.com/profile.php?id=61584081953008', icon: FacebookIcon },
+    { name: 'Instagram', url: 'https://www.instagram.com/furlabforpets?igsh=bWU2cnYzbjdmaTJw', icon: InstagramIcon },
+    { name: 'TikTok', url: 'https://www.tiktok.com/@furlab18', icon: TikTokIcon },
 ];
 
 const Footer: React.FC = () => {

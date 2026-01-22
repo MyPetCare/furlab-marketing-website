@@ -37,8 +37,8 @@ const Header: React.FC = () => {
                         </div>
                     </div>
                     <div className="ml-10 space-x-4 hidden lg:block">
-                        <CTAButton as="link" to="/waitlist" variant="primary">
-                            Join Waitlist
+                        <CTAButton as="link" to="/download" variant="primary">
+                            Download
                         </CTAButton>
                     </div>
                     <div className="lg:hidden">
@@ -73,8 +73,8 @@ const Header: React.FC = () => {
                             ))}
                         </div>
                         <div className="pt-4 pb-3 border-t border-neutral-divider">
-                           <CTAButton as="link" to="/waitlist" variant="primary" className="w-full text-center">
-                                Join Waitlist
+                           <CTAButton as="link" to="/download" variant="primary" className="w-full text-center">
+                               Download
                             </CTAButton>
                         </div>
                     </div>

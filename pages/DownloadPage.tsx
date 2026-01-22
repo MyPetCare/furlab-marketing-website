@@ -1,5 +1,6 @@
 
 import React from 'react';
+import { Link } from 'react-router-dom';
 import SeoHelper from '../components/SeoHelper';
 import { siteConfig } from '../constants/content';
 import { AppleAppStoreIcon, GooglePlayStoreIcon } from '../components/Icons';
@@ -27,28 +28,26 @@ const DownloadPage: React.FC = () => {
                         <div className="mt-12 flex flex-col sm:flex-row items-center justify-center gap-4">
                              <a
                                 href={siteConfig.appStoreLink}
-                                className="inline-flex items-center justify-center px-6 py-4 w-64 h-20 bg-neutral-text text-white rounded-lg transition-transform duration-200 ease-in-out transform hover:-translate-y-1"
+                                className="inline-flex items-center justify-center px-6 py-4 w-60 h-20 bg-neutral-text text-white rounded-lg transition-transform duration-200 ease-in-out transform hover:-translate-y-1"
                                 target="_blank"
                                 rel="noopener noreferrer"
                             >
-                                <AppleAppStoreIcon className="h-10 w-10 mr-3" />
+                                <AppleAppStoreIcon className="h-10 w-10 mr-4" />
                                 <span className="text-left">
                                     <span className="block text-xs">Download on the</span>
                                     <span className="block text-xl font-semibold">App Store</span>
                                 </span>
                             </a>
-                            <a
-                                href={siteConfig.playStoreLink}
-                                className="inline-flex items-center justify-center px-6 py-4 w-64 h-20 bg-neutral-text text-white rounded-lg transition-transform duration-200 ease-in-out transform hover:-translate-y-1"
-                                target="_blank"
-                                rel="noopener noreferrer"
+                            <Link
+                                to="/waitlist"
+                                className="inline-flex items-center justify-center px-6 py-4 w-60 h-20 bg-neutral-text text-white rounded-lg transition-transform duration-200 ease-in-out transform hover:-translate-y-1"
                             >
                                 <GooglePlayStoreIcon className="h-10 w-10 mr-3" />
                                 <span className="text-left">
                                     <span className="block text-xs">Join the wishlist for</span>
                                     <span className="block text-xl font-semibold">Google Play</span>
                                 </span>
-                            </a>
+                            </Link>
                         </div>
                     </div>
                 </div>

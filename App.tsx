@@ -14,6 +14,7 @@ import DownloadPage from './pages/DownloadPage';
 import WaitlistPage from './pages/WaitlistPage';
 import WaitlistVerifyPage from './pages/WaitlistVerifyPage';
 import ContentEditorPage from './pages/ContentEditorPage';
+import SharePage from './pages/SharePage';
 
 const App: React.FC = () => {
   return (
@@ -21,6 +22,10 @@ const App: React.FC = () => {
       <Routes>
         {/* Editor route without Layout (full-screen) */}
         <Route path="/do-not-tell-others-here-is-an-editor" element={<ContentEditorPage />} />
+        
+        {/* Share page without Layout (for iOS Universal Links) */}
+        <Route path="/share" element={<SharePage />} />
+        <Route path="/share/:id" element={<SharePage />} />
         
         {/* All other routes with Layout */}
         <Route path="/" element={<Layout><HomePage /></Layout>} />

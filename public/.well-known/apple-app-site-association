@@ -1,0 +1,11 @@
+﻿{
+  "applinks": {
+    "apps": [],
+    "details": [
+      {
+        "appID": "L4CC3XS449.com.muke.furlab.app",
+        "paths": ["/share", "/share/*"]
+      }
+    ]
+  }
+}

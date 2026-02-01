@@ -5,7 +5,7 @@ import { content, siteConfig } from '../constants/content';
 import FaqItem from '../components/FaqItem';
 import CTAButton from '../components/CTAButton';
 
-const WEBHOOK_URL = 'https://furlab.app.n8n.cloud/webhook-test/submit-contact-form';
+const WEBHOOK_URL = 'https://n8n.furlab.cc/webhook/submit-contact-form';
 const SUBMIT_COOLDOWN = 10 * 60 * 1000; // 10 minutes
 
 const ContactPage: React.FC = () => {

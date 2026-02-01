@@ -5,8 +5,8 @@ import SeoHelper from '../components/SeoHelper';
 import CTAButton from '../components/CTAButton';
 import { siteConfig } from '../constants/content';
 
-const VERIFY_API = 'https://furlab.app.n8n.cloud/webhook/verify-email';
-const BETA_API = 'https://furlab.app.n8n.cloud/webhook/submit-beta-tester-details';
+const VERIFY_API = 'https://n8n.furlab.cc/webhook/verify-email';
+const BETA_API = 'https://n8n.furlab.cc/webhook/submit-beta-tester-details';
 
 // iPhone models list (iPhone 8 and later)
 const IPHONE_MODELS = [

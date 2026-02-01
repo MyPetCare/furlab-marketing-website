@@ -23,8 +23,8 @@ const RAW_CONTENT = {
       "subhead": "Track nutrition, habits, and health reminders—without the guesswork. Our pet wellness app gives you clarity and confidence.",
       "ctas": [
         {
-          "label": "Join Waitlist",
-          "url": "/waitlist",
+          "label": "Get App",
+          "url": "/download",
           "variant": "primary",
           "type": "link"
         },

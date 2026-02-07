@@ -5,6 +5,9 @@ import { siteConfig } from '../constants/content';
 // App icon - using the 192x192 version for sharp display
 const APP_ICON_URL = '/icons/furlab_icon_192x192.svg';
 
+// Custom URL Scheme (matches Xcode: URL Schemes = furlab)
+const APP_SCHEME = 'furlab';
+
 // Translations
 const translations = {
     en: {
@@ -23,16 +26,23 @@ const translations = {
     },
 };
 
+// Fallback delay: if app doesn't open within this time, assume not installed and go to store
+const OPEN_IN_APP_FALLBACK_MS = 2000;
+
 const SharePage: React.FC = () => {
     const [searchParams] = useSearchParams();
     const lang = searchParams.get('lang') === 'zh' ? 'zh' : 'en';
     const t = translations[lang];
 
-    // Handle "Open in App" click - triggers Universal Links
+    const schemeUrl = `${APP_SCHEME}://share?lang=${lang}`;
+
     const handleOpenInApp = () => {
-        // Reload current page URL to trigger Universal Links detection
-        // If app is installed, iOS will intercept and open the app
-        window.location.href = window.location.href;
+        window.location.href = schemeUrl;
+        setTimeout(() => {
+            if (document.visibilityState === 'visible') {
+                window.location.href = siteConfig.appStoreLink;
+            }
+        }, OPEN_IN_APP_FALLBACK_MS);
     };
 
     return (
@@ -79,7 +89,7 @@ const SharePage: React.FC = () => {
             </div>
 
             {/* Info Area - Links */}
-            <div className="flex items-center gap-2 text-sm text-blue-500">
+            <div className="flex items-center gap-2 text-sm text-brand-indigo">
                 <Link to="/privacy" className="hover:underline">
                     {t.privacyPolicy}
                 </Link>

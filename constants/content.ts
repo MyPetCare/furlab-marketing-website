@@ -149,7 +149,7 @@ const RAW_CONTENT = {
         "published_at": "2025-12-05",
         "seo": {
           "title": "Holiday Pet Safety Tips for Dogs & Cats | Furlab Guide",
-          "description": "Keep your pets safe this holiday season with simple, vet-approved tips on food, décor, stress, and travel. Learn how Furlab helps you track health changes all s",
+          "description": "Keep your pets safe this holiday season with simple, vet-approved tips on food, décor, stress, and travel. Learn how Furlab helps you track health changes all season long.",
           "og_image": "https://res.cloudinary.com/dlmtb2xqp/image/upload/v1764918596/furlab-marketing/holiday_pet_safety_tips_illustration_m1qbet.png"
         }
       },

@@ -1,0 +1,7 @@
+
+# Allow all user-agents to crawl the site.
+User-agent: *
+Disallow:
+
+# Point to the sitemap for better indexing.
+Sitemap: /sitemap.xml

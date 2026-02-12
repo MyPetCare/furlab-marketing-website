@@ -41,10 +41,11 @@ const SeoHelper: React.FC<SeoProps> = ({ title, description, canonicalPath, ogIm
     setProperty('og:description', description);
     setProperty('og:type', 'website');
     if(ogImage) setProperty('og:image', ogImage);
-    if(canonicalPath) setProperty('og:url', `${siteConfig.siteUrl}/#${canonicalPath}`);
+    const pathBasedUrl = `${siteConfig.siteUrl}${canonicalPath || '/'}`;
+    if(canonicalPath) setProperty('og:url', pathBasedUrl);
 
-    // Canonical link
-    const canonicalUrl = `${siteConfig.siteUrl}/#${canonicalPath || '/'}`;
+    // Canonical link (path format, no hash)
+    const canonicalUrl = pathBasedUrl;
     let canonicalLink = document.querySelector('link[rel="canonical"]');
     if (!canonicalLink) {
         canonicalLink = document.createElement('link');

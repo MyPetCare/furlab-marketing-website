@@ -4,7 +4,7 @@ import FurlabLogo from '../public/icons/furlab_homepage_icon_240x80.svg';
 
 // --- GLOBAL VARIABLES ---
 const LOGO_URL = FurlabLogo;
-const APP_STORE_LINK = 'https://apps.apple.com/app/id6755325291';
+const APP_STORE_LINK = 'https://apps.apple.com/app/apple-store/id6755325291?pt=128169965&ct=Website&mt=8';
 const PLAY_STORE_LINK = 'https://play.google.com';
 const CONTACT_EMAIL = 'hello@furlab.com';
 
